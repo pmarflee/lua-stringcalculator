@@ -1,17 +1,17 @@
 require "pl"
 require "pl.stringx"
+require "pl.list"
 
 stringx.import()
 
 local stringcalculator = {}
 
 function stringcalculator.add(input)  
-  tokens = input:split(",")    
-  sum = 0
-  for k, v in pairs(tokens) do
-    sum = sum + tonumber(v)
+  if input:len() == 0 then
+    return 0
+  else
+    return input:split(","):map(tonumber):reduce("+")  
   end
-  return sum  
 end
 
 return stringcalculator
