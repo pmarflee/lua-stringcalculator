@@ -10,11 +10,11 @@ function stringcalculator.add(input)
     return 0      
   else
     tokens = input:split(",")    
-    if tokens[2] ~= nil then      
-      return tonumber(tokens[1]) + tonumber(tokens[2])
-    else
-      return tonumber(tokens[1])
+    sum = 0
+    for k, v in pairs(tokens) do
+      sum = sum + tonumber(v)
     end
+    return sum
   end
 end
 
