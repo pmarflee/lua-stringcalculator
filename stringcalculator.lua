@@ -1,16 +1,19 @@
+require "pl"
+require "pl.stringx"
+
+stringx.import()
+
 local stringcalculator = {}
 
 function stringcalculator.add(input)
   if string.len(input) == 0 then
     return 0      
   else
-    start = input:find(",")
-    if start ~= nil then
-      first = input:sub(1, 1)
-      second = input:sub(3, 3)
-      return tonumber(first) + tonumber(second)
+    tokens = input:split(",")    
+    if tokens[2] ~= nil then      
+      return tonumber(tokens[1]) + tonumber(tokens[2])
     else
-      return tonumber(input)
+      return tonumber(tokens[1])
     end
   end
 end
