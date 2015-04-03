@@ -40,6 +40,10 @@ TestStringCalculator = {}
     assertErrorMsgContains("negatives not allowed: -1 -2", stringcalculator.add, "-1,-2,3")
   end
   
+  function TestStringCalculator:test_shouldIgnoreNumbersGreaterThan1000()
+    assertEquals(stringcalculator.add("1001,2"), 2)
+  end
+  
 lu = LuaUnit.new()
 lu:setOutputType("tap")
 os.exit( lu:runSuite() )

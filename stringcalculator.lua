@@ -10,7 +10,10 @@ function stringcalculator.add(input)
   if input:len() == 0 then
     return 0
   else
-    return split(input):map(tonumber):reduce("+")  
+    return split(input)
+      :map(tonumber)
+      :filter(function (n) return n <= 1000 end)
+      :reduce("+")  
   end
 end
 
