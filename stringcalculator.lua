@@ -10,7 +10,7 @@ function stringcalculator.add(input)
   if input:len() == 0 then
     return 0
   else
-    return input:split(","):map(tonumber):reduce("+")  
+    return List{input:splitv("[\n,]")}:map(tonumber):reduce("+")  
   end
 end
 

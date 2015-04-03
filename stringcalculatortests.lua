@@ -24,6 +24,10 @@ TestStringCalculator = {}
     assertEquals(stringcalculator.add("1,2,3,4"), 10)
   end
   
+  function TestStringCalculator:test_shouldHandleNewLinesBetweenNumbers()
+    assertEquals(stringcalculator.add("1\n2,3"), 6)
+  end
+  
 lu = LuaUnit.new()
 lu:setOutputType("tap")
 os.exit( lu:runSuite() )
