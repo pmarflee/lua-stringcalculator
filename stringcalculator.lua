@@ -10,23 +10,13 @@ function stringcalculator.add(input)
   if input:len() == 0 then
     return 0
   else
-    return split(input)
+    validate(input)
+    list, pattern = getlistandpattern(input)
+    return List{list:splitv(pattern)}
       :map(tonumber)
       :filter(function (n) return n <= 1000 end)
       :reduce("+")  
   end
-end
-
-function split(input)
-  validate(input)
-  match = input:match("//(.)\n")  
-  if match ~= nil then
-    pattern = "[" .. match .. "]"
-    input = string.sub(input, 5)
-  else
-    pattern = "[\n,]"
-  end
-  return List{input:splitv(pattern)}
 end
 
 function validate(input)
@@ -38,5 +28,22 @@ function validate(input)
     error("negatives not allowed: " .. (" "):join(t))
   end
 end  
+
+function getlistandpattern(input)
+  pattern = input:match("//(.)\n")
+  if pattern ~= nil then    
+    list = string.sub(input, 5)
+  else
+    pattern = input:match("//%[(.+)%]\n")
+    if pattern ~= nil then      
+      list = string.sub(input, 6 + #pattern)
+    else
+      pattern = "[\n,]"
+      list = input
+    end
+  end
+  
+  return list, pattern
+end
 
 return stringcalculator

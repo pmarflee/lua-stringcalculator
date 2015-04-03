@@ -44,6 +44,10 @@ TestStringCalculator = {}
     assertEquals(stringcalculator.add("1001,2"), 2)
   end
   
+  function TestStringCalculator:test_shouldHandleDelimitersOfAnyLength()
+    assertEquals(stringcalculator.add("//[***]\n1***2***3"), 6)
+  end
+  
 lu = LuaUnit.new()
 lu:setOutputType("tap")
 os.exit( lu:runSuite() )
