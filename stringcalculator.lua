@@ -15,6 +15,7 @@ function stringcalculator.add(input)
 end
 
 function split(input)
+  validate(input)
   match = input:match("//(.)\n")  
   if match ~= nil then
     pattern = "[" .. match .. "]"
@@ -24,5 +25,15 @@ function split(input)
   end
   return List{input:splitv(pattern)}
 end
+
+function validate(input)
+  t = {}  
+  for n in string.gmatch(input, "%-%d+") do
+    table.insert(t, n)    
+  end
+  if #t > 0 then
+    error("negatives not allowed: " .. (" "):join(t))
+  end
+end  
 
 return stringcalculator
