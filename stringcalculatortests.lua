@@ -48,6 +48,14 @@ TestStringCalculator = {}
     assertEquals(stringcalculator.add("//[***]\n1***2***3"), 6)
   end
   
+  function TestStringCalculator:test_shouldHandleMultipleDelimiters()
+    assertEquals(stringcalculator.add("//[*][%]\n1*2%3"), 6)
+  end
+  
+  function TestStringCalculator:test_shouldHandleMultipleDelimitersOfAnyLength()
+    assertEquals(stringcalculator.add("//[***][%%%]\n1***2%%%3"), 6)
+  end
+  
 lu = LuaUnit.new()
 lu:setOutputType("tap")
 os.exit( lu:runSuite() )
